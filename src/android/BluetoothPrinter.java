@@ -133,6 +133,7 @@ public class BluetoothPrinter extends CordovaPlugin {
 				for (BluetoothDevice device : pairedDevices) {
 					// MP300 is the name of the bluetooth printer device
 					if (device.getAddress().equalsIgnoreCase(name)) {
+						callbackContext.success("Bluetooth Opened: " + device.getName());
 						mmDevice = device;
 						return true;
 					}
@@ -227,9 +228,10 @@ public class BluetoothPrinter extends CordovaPlugin {
 			// the text typed by the user
 //			msg += "\n";
 			mmOutputStream.write(msg.getBytes());
+			mmOutputStream.flush();
 			// tell the user data were sent
 //			Log.d(LOG_TAG, "Data Sent");
-			callbackContext.success("Data Sent");
+			callbackContext.success("Data Sent: Printing data "+msg);
 			return true;
 		} catch (Exception e) {
 			String errMsg = e.getMessage();
