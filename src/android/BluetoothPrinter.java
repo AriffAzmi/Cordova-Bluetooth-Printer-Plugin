@@ -132,7 +132,7 @@ public class BluetoothPrinter extends CordovaPlugin {
 			if (pairedDevices.size() > 0) {
 				for (BluetoothDevice device : pairedDevices) {
 					// MP300 is the name of the bluetooth printer device
-					if (device.getName().equalsIgnoreCase(name)) {
+					if (device.getAddress().equalsIgnoreCase(name)) {
 						mmDevice = device;
 						return true;
 					}
